@@ -1,1 +1,70 @@
-<p>applicant works!</p>
+<router-outlet #Outlet="outlet"></router-outlet>
+
+<div class="container-fluid" [hidden]="Outlet.isActivated" style="width:100%">
+  <br>
+  <div>
+    <a class="btn btn-success" routerLink="/applicant/Add">Add New Applicant</a>
+  </div><br>
+  <div class="card">
+
+    <div class="card-body">
+
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th hidden>
+              ID
+            </th>
+            <th>
+              Name
+            </th>
+            <th>
+                FamilyName
+              </th>
+            <th>
+            Address
+            </th>
+            <th>
+                CountryOfOrigin
+            </th>
+            <th>
+                EMailAdress
+            </th>
+            <th>
+                Age
+            </th>
+            <th>
+              Edit
+            </th>
+            <th>
+              Delete
+            </th>
+           
+          </tr>
+
+        </thead>
+        <tbody>
+          <tr *ngFor="let applicant of applicants">
+            <td hidden>{{applicant.ID}}</td>
+            <td>{{applicant.Name}}</td>
+            <td>{{applicant.FamilyName}}</td>
+            <td>{{applicant.Address}}</td>
+            <td>{{applicant.CountryOfOrigin}}</td>
+            <td>{{applicant.EMailAdress}}</td>
+            <td>{{applicant.Age}}</td>
+            <!--<td><img src="http://localhost:9602/Content/Imgs/Empolyees/{{empolyee.Image}}" width="100px" height="100px"></td>-->
+            <td>
+              <a class="btn btn-primary" routerLink="Edit/{{applicant.ID}}">Edit Empolyee</a>
+            </td>
+            <td>
+              <a class="btn btn-danger" (click)="deleteApplicant(applicant.ID)" routerLink="/applicant">Delete Empolyee</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+

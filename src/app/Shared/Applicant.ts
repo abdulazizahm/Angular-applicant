@@ -1,13 +1,13 @@
 export class Applicant{
     constructor(
-        ID:number,
-        Name:string,
-        FamilyName:string,
-        Address:string,
-        CountryOfOrigin:string,
-        EMailAdress:string,
-        Age:number,
-        Hired?:boolean
+        public ID:number,
+        public Name:string,
+        public FamilyName:string,
+        public Address:string,
+        public CountryOfOrigin:string,
+        public EMailAdress:string,
+        public Age:number,
+        public Hired?:boolean
     ){}
 
 }

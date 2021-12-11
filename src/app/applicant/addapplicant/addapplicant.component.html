@@ -1,1 +1,96 @@
-<p>addapplicant works!</p>
+<div class="container">
+    <h1>Application Form</h1>
+    <div class="row">
+      <div class="col-sm-6">
+        <br>
+        <form action="/" #ApplicantForms="ngForm" name="ApplicantForm" novalidate (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="Name" class="h4"> Name:</label>
+            <input type="text" class="form-control" id="Name" name="Name"
+              [class.is-invalid]="Name.invalid && Name.touched" required minlength="5" [(ngModel)]="ApplicantData.Name" #Name="ngModel" >
+  
+            <div *ngIf="Name.touched && Name.invalid" class="alert">
+              <div class='text-danger h5' *ngIf="Name.errors?.['required']"><!--*ngIf="Name.errors?.['required']"   *ngIf="Name.errors?.['minlength']"-->
+                Name is required.
+              </div>
+              <div class='text-danger h5' *ngIf="Name.errors?.['minlength']">
+                Name must be at least 5 characters long.
+              </div>
+            </div>
+           </div>
+           <div class="form-group">
+            <label for="FamilyName" class="h4"> FamilyName:</label>
+            <input type="text" class="form-control" id="FamilyName" name="FamilyName"
+              [class.is-invalid]="FamilyName.invalid && FamilyName.touched" required minlength="5" [(ngModel)]="ApplicantData.FamilyName" #FamilyName="ngModel" >
+  
+            <div *ngIf="FamilyName.touched && FamilyName.invalid" class="alert">
+              <div class='text-danger h5'  *ngIf="FamilyName.errors?.['required']">
+                FamilyName is required.
+              </div>
+              <div class='text-danger h5' *ngIf="FamilyName.errors?.['minlength']">
+                FamilyName must be at least 5 characters long.
+              </div>
+            </div>
+           </div>
+
+          <div class="form-group">
+            <label for="Address" class="h4">Address:</label>
+            <input type="text" class="form-control" id="Address" name="Address"
+              [class.is-invalid]="Address.invalid &&Address.touched" [(ngModel)]="ApplicantData.Address"
+              #Address="ngModel" required minlength="10">
+              <div *ngIf="Address.touched && Address.invalid">
+                <div class="text-danger h5"  *ngIf="Address.errors?.['required']">Address is required</div>
+                <div class='text-danger h5' *ngIf="Address.errors?.['minlength']">
+                    Address must be at least 10 characters long.
+                  </div>
+              </div>
+          </div>
+          <div class="form-group">
+            <label class="h4"> CountryOfOrigin:</label>
+            <select #CountryOfOrigin="ngModel" required [(ngModel)]="ApplicantData.CountryOfOrigin" class="form-control"
+              name="CountryOfOrigin"> 
+              <option selected disabled>please select the Country Of Origin</option>
+              <option *ngFor="let country of countriesList" value="{{country.name}}" >{{country.name}}</option>
+            </select>
+            <div *ngIf="CountryOfOrigin.touched && CountryOfOrigin.invalid">
+                <div class="text-danger h5"  *ngIf="CountryOfOrigin.errors?.['required']">the Country Of Origin is required</div>
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="EMailAdress" class="h4">EMailAdress:</label>
+            <input type="email" class="form-control" id="EMailAdress" name="EMailAdress"
+              [class.is-invalid]="EMailAdress.invalid &&EMailAdress.touched" [(ngModel)]="ApplicantData.EMailAdress"
+              #EMailAdress="ngModel" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"> 
+              <div *ngIf="EMailAdress.touched && EMailAdress.invalid">
+                <div class="text-danger h5"  *ngIf="EMailAdress.errors?.['required']">EMailAdress is required</div>
+                <div class="text-danger h5"  *ngIf="EMailAdress.errors?.['pattern']">Please provide a valid email address</div>
+              </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="Age" class="h4">Age :</label>
+            <input type="number" class="form-control" id="Age" name="Age"
+              [class.is-invalid]="Age.invalid &&Age.touched" [(ngModel)]="ApplicantData.Age"
+              #Age="ngModel" max="60" min="20" required>
+  
+           <div *ngIf="Age.touched && Age.invalid">
+              <div class="text-danger h5"  *ngIf="Age.errors?.['required']">Age is required</div>
+              <div class='text-danger h5' *ngIf="Age.errors?.['min'] || Age.errors?.['max']">
+                The Age is must be between 20 and 60
+              </div>
+            </div>
+          </div>
+          
+          <div class="text-danger"  style="font-weight: bolder;font-size: 20px;margin-top: 10px;">{{eorrors}}</div>
+          <button type="submit" class="btn btn-success w-25 mt-2" [disabled]="ApplicantForms.form?.['invalid']" >Apply Now</button>
+          
+        </form>
+
+  
+  
+      </div>
+      <div class="col-sm-6">
+            <img src="./assets/images/applicant.jpg" width="400" height="400"/>
+      </div>
+    </div>
+  </div>

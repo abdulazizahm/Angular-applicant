@@ -30,7 +30,7 @@ export class ApplicantService {
     formData.append("Age",`${data.Age}`);
     formData.append("Hired",`${data.Hired}`);
     //formData.append("User_Id",`${null}`);
-    return this._http.post<any>(this.url+"/post", formData);
+    return this._http.post<any>(this.url/*+"/post"*/, formData);
   }
 
   DeleteApplicant(id: any): Observable<Applicant[]> {

@@ -39,7 +39,7 @@
             <th>
               Delete Application
             </th>
-           <th>Action</th>
+           <th hidden>Action</th>
           </tr>
 
         </thead>
@@ -60,10 +60,10 @@
             <td>
               <a class="btn btn-danger" (click)="deleteApplicant(applicant.ID)" routerLink="/applicant" >Delete</a>
             </td>
-            <td *ngIF="!(applicant.Hired)" >
+            <td *ngIF="applicant.Hired" >
               <a class="btn btn-danger" (click)="unhired(applicant.ID)" routerLink="/applicant">unHired</a>
             </td>
-            <td *ngIF="(applicant.Hired)">
+            <td *ngIF="!applicant.Hired">
               <a class="btn btn-success" (click)="hired(applicant.ID)" routerLink="/applicant">Hired</a>
             </td>
           </tr>

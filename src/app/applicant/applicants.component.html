@@ -1,5 +1,4 @@
 <router-outlet #Outlet="outlet"></router-outlet>
-
 <div class="container-fluid" [hidden]="Outlet.isActivated" style="width:100%">
   <br>
   <div>
@@ -35,12 +34,12 @@
                 Age
             </th>
             <th>
-              Edit
+              Edit Application
             </th>
             <th>
-              Delete
+              Delete Application
             </th>
-           
+           <th>Action</th>
           </tr>
 
         </thead>
@@ -53,12 +52,19 @@
             <td>{{applicant.CountryOfOrigin}}</td>
             <td>{{applicant.EMailAdress}}</td>
             <td>{{applicant.Age}}</td>
+            
             <!--<td><img src="http://localhost:9602/Content/Imgs/Empolyees/{{empolyee.Image}}" width="100px" height="100px"></td>-->
             <td>
-              <a class="btn btn-primary" routerLink="Edit/{{applicant.ID}}">Edit Empolyee</a>
+              <a class="btn btn-primary" routerLink="Edit/{{applicant.ID}}">Update</a>
             </td>
             <td>
-              <a class="btn btn-danger" (click)="deleteApplicant(applicant.ID)" routerLink="/applicant">Delete Empolyee</a>
+              <a class="btn btn-danger" (click)="deleteApplicant(applicant.ID)" routerLink="/applicant" >Delete</a>
+            </td>
+            <td *ngIF="!(applicant.Hired)" >
+              <a class="btn btn-danger" (click)="unhired(applicant.ID)" routerLink="/applicant">unHired</a>
+            </td>
+            <td *ngIF="(applicant.Hired)">
+              <a class="btn btn-success" (click)="hired(applicant.ID)" routerLink="/applicant">Hired</a>
             </td>
           </tr>
         </tbody>

@@ -32,8 +32,8 @@ export class AddapplicantComponent implements OnInit {
   }
   onSubmit() 
   {
-    this._applicantservice.AddApplicant(this.ApplicantData).subscribe((data)=>{
-    this._router.navigate(["/applicant"])}, 
+    this._applicantservice.AddApplicant(this.ApplicantData).subscribe(
+      (data)=>{this._router.navigate(["/applicant"])}, 
     (error)=> {this.eorrors=error.error.error_description;console.log(error.error)});
   }
 

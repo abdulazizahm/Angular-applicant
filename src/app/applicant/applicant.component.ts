@@ -1,25 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ApplicantService } from '../Services/applicant.service';
 import { Applicant } from '../Shared/Applicant';
 
 @Component({
   selector: 'app-applicant',
-  templateUrl: './applicant.component.html',
-  styleUrls: ['./applicant.component.scss']
+  templateUrl: './applicants.component.html',
+  styleUrls: ['./applicants.component.scss']
 })
 export class ApplicantComponent implements OnInit {
   applicants:Applicant[]=[];
-  constructor(private _applicantService:ApplicantService, private router:Router) 
+  condition:boolean=true;
+  constructor(private _applicantService:ApplicantService) 
   {
-    this._applicantService.GetAllApplicants().subscribe(data=>
-      {
-        this.applicants=data
-        console.log(data)
-      })
   }
 
   ngOnInit(): void {
+    this._applicantService.GetAllApplicants().subscribe(data=>
+      {
+        this.applicants=data
+        console.log(data);
+      })
     }
 
 
@@ -29,6 +29,26 @@ export class ApplicantComponent implements OnInit {
     this._applicantService.DeleteApplicant(id).subscribe(data=>{
     this.applicants=this.applicants.filter(item=>item.ID !=id);
     console.log(data)
+  });
+}
+hired(id:number)
+{
+  this._applicantService.Hired(id).subscribe(datajh=>{
+    this._applicantService.GetAllApplicants().subscribe(data=>
+      {
+        this.applicants=data
+        console.log(data);
+      })
+  });
+}
+unhired(id:number)
+{
+  this._applicantService.unHired(id).subscribe(datajh=>{
+    this._applicantService.GetAllApplicants().subscribe(data=>
+      {
+        this.applicants=data
+        console.log(data);
+      })
   });
 }
 

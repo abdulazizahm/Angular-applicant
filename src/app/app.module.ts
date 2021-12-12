@@ -9,12 +9,13 @@ import { UpdateapplicantComponent } from './applicant/updateapplicant/updateappl
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     ApplicantComponent,
     AddapplicantComponent,
-    UpdateapplicantComponent
+    UpdateapplicantComponent,
   ],
   imports: [
     BrowserModule,

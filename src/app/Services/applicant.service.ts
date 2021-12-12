@@ -9,7 +9,7 @@ import { Applicant } from '../Shared/Applicant';
 })
 export class ApplicantService {
 
-  url: string = 'http://http://localhost:32393/api/applicant';
+  url: string = 'http://localhost:32393/api/applicant';
   constructor(private _http: HttpClient) {}
 
   GetAllApplicants(): Observable<Applicant[]> {
@@ -21,16 +21,7 @@ export class ApplicantService {
   }
 
   AddApplicant(data: Applicant): Observable<any>{
-    let formData = new FormData();
-    formData.append('Name', data.Name);
-    formData.append("FamilyName",`${data.FamilyName}`);
-    formData.append("Address",`${data.Address}`);
-    formData.append("CountryOfOrigin",`${data.CountryOfOrigin}`);
-    formData.append("EMailAdress",`${data.EMailAdress}`);
-    formData.append("Age",`${data.Age}`);
-    formData.append("Hired",`${data.Hired}`);
-    //formData.append("User_Id",`${null}`);
-    return this._http.post<any>(this.url/*+"/post"*/, formData);
+    return this._http.post<any>(this.url, data);
   }
 
   DeleteApplicant(id: any): Observable<Applicant[]> {
@@ -38,15 +29,12 @@ export class ApplicantService {
   }
 
   UpdateApplicant(data: Applicant): Observable<any>{
-    let formData = new FormData();
-    formData.append('Name', data.Name);
-    formData.append("FamilyName",`${data.FamilyName}`);
-    formData.append("Address",`${data.Address}`);
-    formData.append("CountryOfOrigin",`${data.CountryOfOrigin}`);
-    formData.append("EMailAdress",`${data.EMailAdress}`);
-    formData.append("Age",`${data.Age}`);
-    formData.append("Hired",`${data.Hired}`);
-    //formData.append("User_Id",`${null}`);
-    return this._http.put(`${this.url}/${data.ID}`,formData);
+    return this._http.put(`${this.url}/${data.ID}`,data);
+  }
+  Hired(id: number): Observable<any>{
+    return this._http.get(`${this.url+"/Hired"}/${id}`);
+  }
+  unHired(id: number): Observable<any>{
+    return this._http.get(`${this.url+"/unHired"}/${id}`);
   }
 }
